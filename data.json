@@ -1,0 +1,286 @@
+{
+  "datosPersonales": {
+    "nombre": "Lucaz",
+    "apellido": "Vazques",
+    "cedula": {
+      "tipo": "V",
+      "numero": "12365748"
+    },
+    "grupoSanguineo": "B-",
+    "sexo": "Masculino",
+    "fechaNacimiento": "17/09/1995",
+    "lugarNacimiento": "Guasdualito",
+    "direccionHabitacion": "Avenida Alfredo Sadel",
+    "parroquia": "Guasdualito",
+    "municipio": "Paez",
+    "pais": "Venezuela",
+    "estadoNacimiento": "Apure",
+    "telefonoResidencial": "02781234567",
+    "canaima": {
+      "posee": false,
+      "serial": "dasd-5646asd-4da6s5d4as6"
+    },
+    "correo": "hola@hola.com",
+    "nuevoIngreso": true,
+    "institucionProcedencia": "Periquera",
+    "razonInscripcion": "La institucion queda cerca de la casa",
+    "gradoCursar": "5",
+    "repitiente": false,
+    "regular": true,
+    "tallaCamisa": "10",
+    "estatura": 1.9,
+    "peso": 80,
+    "tallaPantalon": 6,
+    "calzado": 26,
+    "hermanosInstitucion": {
+      "posee": true,
+      "cantidad": 8,
+      "gradoCursan": ["1", "3", "6"]
+    },
+    "personaEmergencia": {
+      "nombre": "Maria",
+      "parentesco": "Vecina",
+      "telefonoResidencial": "02761234567",
+      "telefonoCelular": "04245432169"
+    }
+  },
+  "aspectosSociales": {
+    "viveNinho": {
+      "madre": true,
+      "padre": true,
+      "otros": "Tios y abuelos"
+    },
+    "totalPersonasHogar": 0,
+    "hermanos": {
+      "cantidad": 2,
+      "lugarOcupaNinho": "Segundo",
+      "descripcionRelacion": "Buena relacion"
+    },
+    "otrosFamiliaresHogar": {
+      "viven": true,
+      "parentesco": ["Prima", "Tio"],
+      "descripcionRelacion": "Se llevan bien"
+    },
+    "personaPostClases": "Abuela",
+    "acompanhanteTareas": "Abuela",
+    "deportesPractica": ["Futbol", "Beisbol"],
+    "horarioPractica": "2pm-4pm",
+    "talentoActitud": ["Escribir", "Dibujar", "Tocar guitarra"],
+    "beca": false,
+    "lecturaHogar": {
+      "practica": true,
+      "tipo": "Detectivescas"
+    },
+    "trabajo": {
+      "ejerce": true,
+      "funciones": "Cuidando perros"
+    }
+  },
+  "identificacionPadres": {
+    "madre": {
+      "apellido": "Gonzales",
+      "nombre": "Pepina",
+      "cedula": {
+        "tipo": "V",
+        "numero": "20"
+      },
+      "fechaNacimiento": "1970/06/24",
+      "estadoCivil": "S",
+      "lugarNacimiento": "Guasdualito",
+      "profesion": "Ama de casa",
+      "ingresoEconomico": 500000,
+      "telefonoResidencial": "No posee",
+      "telefonoCelular": "04269852364",
+      "trabajo": {
+        "lugar": "Ferreteria PZL",
+        "telefono": "02783215698"
+      },
+      "direccionHabitacion": "Barrio Morrones Diagonal al triangulo",
+      "enfermedadesPadecidas": ["Covid", "Chikunguya"],
+      "viveConNinho": true,
+      "gradoInstruccion": "Bachiller",
+      "vivienda": {
+        "tenencia": "Propia",
+        "tipo": "Casa"
+      },
+      "religion": "Catolica",
+      "actividades": ["Ayudar a los necesitados", "Cantar en el coro"],
+      "misionSocial": {
+        "posee": true,
+        "descripcion": "Ayudar en la iglesia"
+      },
+      "correo": "test@test.com",
+      "relacionNinho": "Tenemos una buena relacion "
+    },
+    "padre": {
+      "apellido": "Perez Blanco",
+      "nombre": "Juan",
+      "cedula": {
+        "tipo": "V",
+        "numero": "20"
+      },
+      "fechaNacimiento": "1972/05/01",
+      "estadoCivil": "S",
+      "lugarNacimiento": "El Amparo",
+      "profesion": "Electricista",
+      "ingresoEconomico": 2500000,
+      "telefonoResidencial": null,
+      "telefonoCelular": "04248523645",
+      "trabajo": {
+        "lugar": "Electrica GNP",
+        "telefono": "02765214785"
+      },
+      "enfermedadesPadecidas": ["Covid", "Chikunguya"],
+      "correo": "juan@ele.com",
+      "viveConNinho": true,
+      "gradoInstruccion": "Universitario",
+      "relacionNinho": "Maravillosa"
+    }
+  },
+  "aspectosSalud": {
+    "enfermedadesEmbarazo": ["Hipertension", "Toxoplasmosis"],
+    "antecedentesPerinatales": ["Normal", "A termino"],
+    "antecedentesPostNatales": "Sin informacion",
+    "problemasNacimiento": "Sin problemas",
+    "pesoNacimiento": 2.7,
+    "tallaNacimiento": 40,
+    "lloroNacer": true,
+    "gatear": {
+      "gateo": true,
+      "edad": 8
+    },
+    "edadCaminar": 1,
+    "familiarDiscapacidad": {
+      "posee": true,
+      "descripcion": "No posee una pierna"
+    },
+    "enfermedadesNinho": ["Lechina", "Sarampion"],
+    "vacunasRecibidas": ["Meninguitis", "Hepatitis B", "Covid"],
+    "habitosAlimenticios": {
+      "alimentos": {
+        "comeTodo": false,
+        "tipo": "No come ensalada porque no le gusta"
+      },
+      "alergia": {
+        "posee": true,
+        "descripcion": "Alergia al polvo y la humedad",
+        "alimentos": ["Mani", "Soya", "Leche"]
+      },
+      "condicionEspecial": {
+        "posee": true,
+        "descripcion": "TDA"
+      },
+      "objetosRecetados": {
+        "zapatosOrtopedicos": false,
+        "lentesRecetados": true,
+        "otros": ["Pastillas", "Jarabes"]
+      },
+      "tratamiento": {
+        "recibe": true,
+        "nombre": "Nebulizacion",
+        "motivo": "Es asmatico",
+        "medico": "Petronilo Casillas",
+        "especialidad": "Neumonologo",
+        "fechaInicio": "2015/05/05"
+      },
+      "asegurado": {
+        "seguro": true,
+        "tipo": ["PRIVADO", "IPASME"]
+      },
+      "desarrolloLenguajeMotor": {
+        "edadHablo": 1,
+        "duermeBien": "Perfectamente",
+        "alteraFacil": false,
+        "manoTrabajar": "Derecha"
+      },
+      "necesidadesCompromiso": ["Visual", "Auditivas"]
+    }
+  },
+  "representanteLegal": {
+    "apellido": "Lucho",
+    "nombre": "Suarez",
+    "cedula": {
+      "tipo": "V",
+      "numero": "20"
+    },
+    "fechaNacimiento": "04/04/1988",
+    "edad": 34,
+    "parentesco": "Tio",
+    "lugarNacimiento": "Merida",
+    "profesion": "Escritor",
+    "correo": "hola1@hola.com",
+    "estadoCivil": "S",
+    "ingresoEconomico": 200000,
+    "direccionHabitacion": "Frente a la plaza los Querubines",
+    "viveConNinho": true,
+    "telefonoResidencial": "02782136547",
+    "telefonoCelular": "04243698521",
+    "trabajo": {
+      "lugar": "Editorial Cambridge",
+      "telefono": "0265258964"
+    },
+    "razonRepresenta": "Porque quiero"
+  },
+  "otrosDatos": {
+    "actividadesIndependientes": [
+      "Comer",
+      "Expresarse oralmente",
+      "Ir al baño",
+      "Vestirse"
+    ],
+    "personaCuidaNinhoHogar": "Abuela",
+    "gustosNinho": {
+      "gustos": ["Computadora", " Ver Television", "Telefono"],
+      "horas": 3
+    },
+    "retiraSoloInstitucion": {
+      "retira": true,
+      "razon": "La escuela queda cerca de la casa y puede ir caminando solo"
+    },
+    "responsableRetiro": {
+      "nombre": "Condorito",
+      "cedula": "14523698"
+    },
+    "transporteEscuela": {
+      "medio": "Caminando",
+      "via": "Av. Estudiante"
+    },
+    "gradoReprobado": {
+      "reprobado": true,
+      "grado": "4"
+    },
+    "cumpleNormasHogar": true,
+    "firmaActaCompromiso": true
+  },
+  "controlInscripcion": [
+    {
+      "grado": "3",
+      "anhoEscolar": "2023-2024",
+      "fechaInscripcion": "2023/09/16",
+      "docente": {
+        "nombre": "Petra",
+        "apellido": "Perez"
+      }
+    }
+  ],
+  "actualizacionDatos": [
+    {
+      "grado": "6",
+      "estatura": 1.3,
+      "peso": 25,
+      "calzado": 26,
+      "tallaCamisa": "10",
+      "tallaPantalon": 8
+    }
+  ],
+  "controlRetiro": {
+    "retiro": true,
+    "fecha": "04-11-2022",
+    "motivo": "El niño no se sentia comodo",
+    "institutoAEstudiar": "Escuela Julio de Armas",
+    "representante": {
+      "nombre": "Petronila",
+      "cedula": "18745874"
+    }
+  }
+}
