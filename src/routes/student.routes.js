@@ -15,7 +15,7 @@ const { validatorAlumn } = require("../middlewares/validatorManager");
 router.get("/", getStudents);
 
 //Registrar-Inscribir a un alumno por primera vez
-router.post("/", registerStudent);
+router.post("/", validatorAlumn, registerStudent);
 
 //Dado un id, obtener la informacion de un alumno en especifico
 router.get("/:id", getStudent);

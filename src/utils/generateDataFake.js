@@ -683,11 +683,11 @@ const generarData = () => {
 };
 
 //Genera un archivo .txt con un objeto JSON de los datos de un estudiante
-/* fs.writeFile("fakeData.txt", JSON.stringify(dataTest), (err) => {
+fs.writeFile("fakeData.txt", JSON.stringify(generarData()), (err) => {
   if (err) {
     console.error(err);
     return;
   }
-}); */
+});
 
 module.exports = { generarData };
