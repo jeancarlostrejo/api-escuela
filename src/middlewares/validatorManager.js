@@ -174,9 +174,7 @@ const validatorAlumn = [
   body("datosPersonales.nuevoIngreso")
     .isBoolean()
     .withMessage("Ingrese un valor Booleano"),
-  body("datosPersonales.institucionProcedencia")
-    .trim()
-    .default("Sin procedencia"),
+  body("datosPersonales.institucionProcedencia").trim().default("N/P"),
   body("datosPersonales.razonInscripcion").trim().default("N/P"),
   body("datosPersonales.gradoCursar")
     .exists()
@@ -394,10 +392,10 @@ const validatorAlumn = [
       "El campo que indica el total de personas en el hogar debe ser un valor numerico mayor o igual que 0"
     )
     .optional({ checkFalsy: true, nullable: true }),
-  body("aspectosSociales.hermanos")
-    .exists()
-    .isObject()
-    .withMessage("El campo de los hermanos debe ser un objeto"),
+  body("aspectosSociales.hermanos").optional({
+    checkFalsy: true,
+    nullable: true,
+  }),
   body("aspectosSociales.hermanos.cantidad")
     .exists()
     .withMessage("Debe existir el campo de la cantidad de hermanos")
@@ -426,15 +424,10 @@ const validatorAlumn = [
       "El campo que indica la relacion del niño con sus sus hermanos NO debe ir vacio"
     )
     .optional({ checkFalsy: true, nullable: true }),
-  body("aspectosSociales.otrosFamiliaresHogar")
-    .exists()
-    .withMessage(
-      "El campo que indica con la informacion de los familiares en el hogar debe existir "
-    )
-    .isObject()
-    .withMessage(
-      "El campo que indica con la informacion de los familiares en el hogar debe ser un Objeto"
-    ),
+  body("aspectosSociales.otrosFamiliaresHogar").optional({
+    checkFalsy: true,
+    nullable: true,
+  }),
   body("aspectosSociales.otrosFamiliaresHogar.viven")
     .exists()
     .withMessage(
@@ -538,6 +531,10 @@ const validatorAlumn = [
     nullable: true,
   }),
   body("identificacionPadres.madre.estadoCivil").trim().optional({
+    checkFalsy: true,
+    nullable: true,
+  }),
+  body("identificacionPadres.madre.edad").trim().optional({
     checkFalsy: true,
     nullable: true,
   }),
@@ -666,6 +663,10 @@ const validatorAlumn = [
     nullable: true,
   }),
   body("identificacionPadres.padre.profesion").trim().optional({
+    checkFalsy: true,
+    nullable: true,
+  }),
+  body("identificacionPadres.padre.edad").trim().optional({
     checkFalsy: true,
     nullable: true,
   }),
@@ -1100,19 +1101,11 @@ const validatorAlumn = [
   }),
   body("controlInscripcion")
     .isArray({ min: 1 })
-    .withMessage("Debe indicar los datos del control de la inscripcion")
-    .optional({
-      checkFalsy: true,
-      nullable: true,
-    }),
+    .withMessage("Debe indicar los datos del control de la inscripcion"),
   body("controlInscripcion.*.grado")
     .trim()
     .isIn(["1", "2", "3", "4", "5", "6"])
-    .withMessage("El grado del control de inscripcion NO es valido")
-    .optional({
-      checkFalsy: true,
-      nullable: true,
-    }),
+    .withMessage("El grado del control de inscripcion NO es valido"),
   body("controlInscripcion.*.anhoEscolar")
     .notEmpty()
     .trim()
@@ -1121,14 +1114,10 @@ const validatorAlumn = [
     )
     .bail()
     .trim()
-    .isLength({ min: 5, max: 9 })
+    .isLength({ min: 9, max: 9 })
     .withMessage(
-      "Periodo escolar Invalidol, ingrese un valor valido (ejemplo: 2022-2023)"
-    )
-    .optional({
-      checkFalsy: true,
-      nullable: true,
-    }),
+      "Periodo escolar Invalido, ingrese un valor valido (ejemplo: 2022-2023)"
+    ),
   body("controlInscripcion.*.fechaInscripcion")
     .notEmpty()
     .trim()
@@ -1140,20 +1129,12 @@ const validatorAlumn = [
         throw new Error("La fecha de nacimiento NO es una fecha válida");
       }
       return value;
-    })
-    .optional({
-      checkFalsy: true,
-      nullable: true,
     }),
   body("controlInscripcion.*.docente")
     .exists()
     .withMessage(
       "Debe existir el campo del nombre del docente en el control de inscripcion"
-    )
-    .optional({
-      checkFalsy: true,
-      nullable: true,
-    }),
+    ),
   body("controlInscripcion.*.docente.nombre")
     .exists()
     .trim()
@@ -1163,11 +1144,7 @@ const validatorAlumn = [
     .notEmpty()
     .withMessage(
       "el campo del nombre del docente en el control de inscripcion NO debe estar vacio"
-    )
-    .optional({
-      checkFalsy: true,
-      nullable: true,
-    }),
+    ),
   body("controlInscripcion.*.docente.apellido")
     .exists()
     .trim()
@@ -1177,11 +1154,7 @@ const validatorAlumn = [
     .notEmpty()
     .withMessage(
       "el campo del apellido del docente en el control de inscripcion NO debe estar vacio"
-    )
-    .optional({
-      checkFalsy: true,
-      nullable: true,
-    }),
+    ),
   body("actualizacionDatos.*.grado")
     .trim()
     .isIn(["1", "2", "3", "4", "5", "6"])

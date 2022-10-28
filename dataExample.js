@@ -1,52 +1,52 @@
 const dataTest = {
   //Objeto
   datosPersonales: {
-    nombre: "Vinicius", //String
-    apellido: "Junior", //String
+    nombre: "Vinicius", //String **OBLIGATORIO**
+    apellido: "Junior", //String **OBLIGATORIO**
     //Objeto
     cedula: {
-      tipo: "V", //String, solo "V" o "E"
-      numero: "20", //String
+      tipo: "V", //String, solo "V" o "E" **OBLIGATORIO**
+      numero: "20", //String **OBLIGATORIO**
     },
-    grupoSanguineo: "B-", //String, valores permitidos: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
-    sexo: "Masculino", //String, valores permitidos: ["Masculino","Femenino"]
-    fechaNacimiento: "11/08/1995", //Date
-    lugarNacimiento: "Guasdualito", //String
-    direccionHabitacion: "Diagonal al hospital", //String
-    parroquia: "Guasdualito", //String
-    municipio: "Paez", //String
-    pais: "Venezuela", //String
-    estadoNacimiento: "Apure", //String
-    telefonoResidencial: "02783324251", //String
+    grupoSanguineo: "B-", //String, valores permitidos: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"] **OBLIGATORIO**
+    sexo: "Masculino", //String, valores permitidos: ["Masculino","Femenino"] **OBLIGATORIO**
+    fechaNacimiento: "11/08/1995", //Date **OBLIGATORIO**
+    lugarNacimiento: "Guasdualito", //String **OBLIGATORIO**
+    direccionHabitacion: "Diagonal al hospital", //String **OBLIGATORIO**
+    parroquia: "Guasdualito", //String **OBLIGATORIO**
+    municipio: "Paez", //String **OBLIGATORIO**
+    pais: "Venezuela", //String **OBLIGATORIO**
+    estadoNacimiento: "Apure", //String **OBLIGATORIO**
+    telefonoResidencial: "02783324251", //String numerico **PUEDE SER OPCIONAL, pero en caso de que se pasen valores, deben corresponder a un numero de telefono valido de minimo 11 numeros**
     //Objeto
     canaima: {
-      posee: false, // Boolean
-      serial: "", // String
+      posee: false, // Boolean **OBLIGATORIO**
+      serial: "", // String **OPCIONAL, EL VALOR POR DEFECTO QUE TOMA ES "N/P" que significa No Proporcionado **
     },
-    correo: "hola@hola.co", // String
-    nuevoIngreso: true, // Boolean
-    institucionProcedencia: "Periquera", // String
-    razonInscripcion: "La institucion queda cerca de la casa", // String
-    gradoCursar: "5", // String, valores permitidos: ["1", "2", "3", "4", "5", "6"]
-    repitiente: false, // Boolean
-    regular: true, // Boolean
-    tallaCamisa: "10", // String
-    estatura: 1.9, // Number, valor mínimo: 0.5 y máximo: 2 *Medida en metros*
-    peso: 80, //Number, valor mínimo: 10 y máximo: 80 *Medida en kilogramo*
-    tallaPantalon: 6, // Number, valor mínimo: 4 y máximo: 30
-    calzado: 26, // Number, valor mínimo:10 y máximo: 45
+    correo: "hola@hola.com", // String **PUEDE SER OPCIONAL** EN CASO DE QUE SE PASEN VALORES, DEBEN CUMPLIR LAS CONDICIONES PARA SER UN CORREO VALIDO
+    nuevoIngreso: true, // Boolean **OBLIGATORIO**
+    institucionProcedencia: "Periquera", // String **OPCIONAL, EL VALOR POR DEFECTO QUE TOMA ES "N/P" que significa No Proporcionado **
+    razonInscripcion: "La institucion queda cerca de la casa", // String **OPCIONAL, EL VALOR POR DEFECTO QUE TOMA ES "N/P" que significa No Proporcionado **
+    gradoCursar: "5", // String, valores permitidos: ["1", "2", "3", "4", "5", "6"] **OBLIGATORIO**
+    repitiente: false, // Boolean **OBLIGATORIO**
+    regular: true, // Boolean **OBLIGATORIO**
+    tallaCamisa: "10", // String **OBLIGATORIO**
+    estatura: 1.9, // Number, valor mínimo: 0.5 y máximo: 2 *Medida en metros* **OBLIGATORIO**
+    peso: 80, //Number, valor mínimo: 10 y máximo: 80 *Medida en kilogramo* **OBLIGATORIO**
+    tallaPantalon: 6, // Number, valor mínimo: 4 y máximo: 30 **OBLIGATORIO**
+    calzado: 26, // Number, valor mínimo:10 y máximo: 45 **OBLIGATORIO**
     //Objeto
     hermanosInstitucion: {
-      posee: true, // Boolean
-      cantidad: 8, //Number, valor mínimo: 0 y máximo: 10
-      gradoCursan: ["1", "3", "6"], // Array de String, valores permitidos: ["1", "2", "3", "4", "5", "6"]
+      posee: true, // Boolean **OBLIGATORIO**
+      cantidad: 8, //Number, valor mínimo: 0 y máximo: 10 **OBLIGATORIO**
+      gradoCursan: ["1", "3", "6"], // Array de String, valores permitidos: ["1", "2", "3", "4", "5", "6"] **OPCIONAL, como es un Array, si se pasan un valor como [""] o "" entonces seran reemplazados por un array vacio [] y se guardará como tal**
     },
     //Objeto
     personaEmergencia: {
-      nombre: "Maria", //String
-      parentesco: "Vecina", //String
-      telefonoResidencial: "04247299511", //String numerico, longitud numérica minima de 11
-      telefonoCelular: "04247299511", //String numerico, longitud numérica minima de 11
+      nombre: "Maria", //String **OBLIGATORIO**
+      parentesco: "Vecina", //String **OBLIGATORIO**
+      telefonoResidencial: "04247299511", //String numerico, longitud numérica minima de 11 **PUEDE SER OPCIONAL, pero en caso de que se pasen valores, deben corresponder a un numero de telefono valido de minimo 11 numeros**
+      telefonoCelular: "04247299511", //String numerico, longitud numérica minima de 11 **PUEDE SER OPCIONAL, pero en caso de que se pasen valores, deben corresponder a un numero de telefono valido de minimo 11 numeros**
     },
   },
   //objeto
@@ -60,7 +60,7 @@ const dataTest = {
     totalPersonasHogar: 0, // Number, valor mínimo: 0
     //Objeto
     hermanos: {
-      cantidad: "0", // Number, valor mínimoÑ 0
+      cantidad: "0", // Number, valor mínimo 0
       lugarOcupaNinho: "Segundo", // string
       descripcionRelacion: "Buena relacion", // String
     },
@@ -294,17 +294,18 @@ const dataTest = {
   //Array de Objetos
   controlInscripcion: [
     {
-      grado: "3", // String, valores permitidos: ["1", "2", "3", "4", "5", "6"]
-      anhoEscolar: "2023-2024", // String
-      fechaInscripcion: "2023/09/16", // Date
+      grado: "3", // String, valores permitidos: ["1", "2", "3", "4", "5", "6"] **OBLIGATORIO**
+      anhoEscolar: "2023-2024", // String **OBLIGATORIO, DEBE SER EN ESE FORMATO EL STRING**
+      fechaInscripcion: "2023/09/16", // Date **OBLIGATORIO**
       //Objeto
       docente: {
-        nombre: "Petra", // String
-        apellido: "Perez", // String
+        nombre: "Petra", // String **OBLIGATORIO**
+        apellido: "Perez", // String **OBLIGATORIO**
       },
     },
   ],
   //Array de Objetos
+  //EN PRIMERA INSTANCIA ES OPCIONAL, PERO SE PUEDE CONSIDERAR COLOCARLO OBLIGATORIO**
   actualizacionDatos: [
     {
       grado: "6", // String, valores permitidos: ["1", "2", "3", "4", "5", "6"]
@@ -316,6 +317,7 @@ const dataTest = {
     },
   ],
   //Objeto
+  //EN PRIMERA INSTANCIA, AL MOMENTO DE INSCRIPCION, ES OPCIONAL, PORQUE NO SE VA A INSCRIBIR A ALGUIEN Y RETIRARLO DE UNA VEZ**
   controlRetiro: {
     retiro: true, // Boolean
     fecha: "04-11-2023", // Date
