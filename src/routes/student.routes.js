@@ -10,9 +10,11 @@ const {
 } = require("../controllers/student.controller");
 
 const { validatorAlumn } = require("../middlewares/validatorManager");
+const { authMiddleware } = require("../middlewares/validateToken");
+const { checkRol } = require("../middlewares/rol");
 
 //Obtener todos los alumnos inscritos
-router.get("/", getStudents);
+router.get("/", authMiddleware, /*checkRol(["profesor"])*/ getStudents);
 
 //Registrar-Inscribir a un alumno por primera vez
 router.post("/", validatorAlumn, registerStudent);
@@ -24,7 +26,7 @@ router.get("/:id", getStudent);
 router.delete("/:id", deleteStudent);
 
 //Dado un id, actulizar parcialmente los datos de un alumno
-router.patch("/:id", updateStudent);
+router.patch("/:id", validatorAlumn, updateStudent);
 
 //Obtener a los alumnos inscritos que estan en un grado en especifico y en un periodo en especifico
 router.get("/grado/:id/periodo/:periodo", getStudentsGrade);

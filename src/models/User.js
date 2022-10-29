@@ -4,12 +4,11 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
-    email: {
+    username: {
       type: String,
-      required: true,
-      trim: true,
       unique: true,
-      lowercase: true,
+      required: true,
+      min: 5,
     },
     password: {
       type: String,
@@ -20,8 +19,8 @@ const userSchema = new Schema(
 
     role: {
       type: [String],
-      enum: ["usuario", "profesor", "director", "admin"],
-      default: "usuario",
+      enum: ["profesor", "director", "admin", "superadmin"],
+      default: "profesor",
     },
   },
   {

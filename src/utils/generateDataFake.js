@@ -221,6 +221,7 @@ const generarData = () => {
           mode: "age",
         }), // Date
         estadoCivil: faker.helpers.arrayElement(["S", "C", "D", "Otro"]), // String
+        edad: faker.datatype.number({ min: 20, max: 50 }),
         lugarNacimiento: faker.address.city(), // String
         profesion: faker.name.jobTitle(), // String
         ingresoEconomico: faker.datatype.number({ min: 0, max: 20000000 }), //Number
@@ -324,6 +325,7 @@ const generarData = () => {
         estadoCivil: faker.helpers.arrayElement(["S", "C", "D", "Otro"]), // String
         lugarNacimiento: faker.address.city(), // String
         profesion: faker.name.jobTitle(), // String
+        edad: faker.datatype.number({ min: 20, max: 50 }), //Number
         ingresoEconomico: faker.datatype.number({ min: 0, max: 20000000 }), // Number
         telefonoResidencial: `${faker.helpers.arrayElement([
           "0424",

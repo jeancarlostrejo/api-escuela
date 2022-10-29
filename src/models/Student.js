@@ -7,19 +7,16 @@ const studentSchema = new Schema(
     datosPersonales: {
       nombre: {
         type: String,
-        require: true,
         trim: true,
       },
       apellido: {
         type: String,
-        require: true,
         trim: true,
       },
       cedula: {
         tipo: {
           type: String,
           enum: ["V", "E"],
-          default: "V",
         },
         numero: {
           type: String,
@@ -35,7 +32,6 @@ const studentSchema = new Schema(
         type: String,
         trim: true,
         enum: ["Masculino", "Femenino"],
-        default: "Masculino",
       },
       fechaNacimiento: Date,
       edad: {
@@ -91,11 +87,9 @@ const studentSchema = new Schema(
       hermanosInstitucion: {
         posee: {
           type: Boolean,
-          default: false,
         },
         cantidad: {
           type: Number,
-          default: 0,
         },
         gradoCursan: {
           type: [String],
@@ -113,11 +107,9 @@ const studentSchema = new Schema(
       viveNinho: {
         madre: {
           type: Boolean,
-          default: false,
         },
         padre: {
           type: Boolean,
-          default: false,
         },
         otros: String,
       },
@@ -125,7 +117,6 @@ const studentSchema = new Schema(
       hermanos: {
         cantidad: {
           type: Number,
-          default: 0,
         },
         lugarOcupaNinho: String,
         descripcionRelacion: String,
@@ -187,12 +178,10 @@ const studentSchema = new Schema(
               "Compartida",
               "Invadida",
             ],
-            default: "Propia",
           },
           tipo: {
             type: String,
             enum: ["Rancho", "Casa", "Quinta", "Apartamento"],
-            default: "Casa",
           },
         },
         religion: String,
@@ -286,7 +275,6 @@ const studentSchema = new Schema(
           lentesRecetados: Boolean,
           otros: {
             type: [String],
-            default: "Ninguno",
           },
         },
         tratamiento: {
@@ -379,6 +367,7 @@ const studentSchema = new Schema(
     },
     controlInscripcion: [
       {
+        _id: false,
         grado: {
           type: String,
           enum: ["1", "2", "3", "4", "5", "6"],
@@ -388,7 +377,6 @@ const studentSchema = new Schema(
         },
         fechaInscripcion: {
           type: Date,
-          default: new Date(),
         },
         docente: {
           nombre: String,
@@ -398,6 +386,7 @@ const studentSchema = new Schema(
     ],
     actualizacionDatos: [
       {
+        _id: false,
         grado: {
           type: String,
           enum: ["1", "2", "3", "4", "5", "6"],
@@ -435,7 +424,6 @@ const studentSchema = new Schema(
     controlRetiro: {
       retiro: {
         type: Boolean,
-        default: false,
       },
       fecha: {
         type: Date,

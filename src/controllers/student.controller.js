@@ -6,7 +6,7 @@ const { generarData } = require("../utils/generateDataFake");
 const registerStudent = async (req, res) => {
   try {
     //Poblar la base de datos con informacion falsas
-    /*     for (let i = 0; i < 250; i++) {
+    /*     for (let i = 0; i < 176; i++) {
       let dataFake = generarData();
       let student = new Student(dataFake);
       await student.save();
@@ -130,6 +130,7 @@ const getStudentsGrade = async (req, res) => {
 const updateStudent = async (req, res) => {
   try {
     const { id } = req.params;
+
     const student = await Student.findOneAndUpdate({ _id: id }, req.body, {
       new: true,
     });
@@ -141,9 +142,9 @@ const updateStudent = async (req, res) => {
 
     //Obtener la edad actualizada del alumno en base a su fecha de nacimiento
     student.datosPersonales.edad = student.datosPersonales.edad;
-
     res.json({ student });
   } catch (e) {
+    console.log(e);
     res
       .status(500)
       .json({ error: "Error al actualizar la información del estudiante" });
