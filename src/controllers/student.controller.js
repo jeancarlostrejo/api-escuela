@@ -21,8 +21,8 @@ const registerStudent = async (req, res) => {
 
     //Si ya existe un estudiante con la misma cedula, retornamos un mensaje
     if (data) {
-      res.status(409).json({
-        message: "Ya hay un estudiante registrado con ese número de cédula",
+      res.status(400).json({
+        error: "Ya hay un estudiante registrado con ese número de cédula",
       });
       return;
     }
@@ -30,10 +30,10 @@ const registerStudent = async (req, res) => {
     const student = new Student(req.body);
     data = await student.save();
 
-    res.status(201).json({ student: "Estudiante registrado correctamente" });
-  } catch (error) {
+    res.status(201).json({ message: "Estudiante registrado correctamente" });
+  } catch (e) {
     console.log(error);
-    res.status(500).json({ message: "Error al registrar un estudiante" });
+    res.status(500).json({ error: "Error al registrar un estudiante" });
   }
 };
 
@@ -43,7 +43,7 @@ const getStudents = async (req, res) => {
     let students = await Student.find({});
 
     if (students.length === 0) {
-      return res.status(404).json({ message: "No hay alumnos registrados" });
+      return res.status(404).json({ error: "No hay alumnos registrados" });
     }
 
     //Calculamos la edad del estudiante en base a su fecha de nacimiento a traves de una funcion del schema
@@ -53,8 +53,8 @@ const getStudents = async (req, res) => {
     });
 
     res.json(students);
-  } catch (error) {
-    return res.status(500).json({ message: "Error al obtener los alumnos" });
+  } catch (e) {
+    return res.status(500).json({ error: "Error al obtener los alumnos" });
   }
 };
 
@@ -65,7 +65,7 @@ const getStudent = async (req, res) => {
     const student = await Student.findById(id);
 
     if (!student) {
-      res.status(404).json({ message: "No existe el estudiante" });
+      res.status(404).json({ error: "No existe el estudiante" });
       return;
     }
 
@@ -73,8 +73,8 @@ const getStudent = async (req, res) => {
     student.datosPersonales.edad = student.datosPersonales.edad;
 
     res.json({ student });
-  } catch (error) {
-    res.status(500).json({ message: "Error al obtener al estudiante" });
+  } catch (e) {
+    res.status(500).json({ error: "Error al obtener al estudiante" });
   }
 };
 
@@ -86,15 +86,15 @@ const deleteStudent = async (req, res) => {
     let data = await Student.findById(id);
 
     if (!data) {
-      res.status(404).json({ message: "No existe el estudiante" });
+      res.status(404).json({ error: "No existe el estudiante" });
       return;
     }
 
     data = await Student.deleteOne({ _id: id });
 
     res.status(204).json({ message: "Estudiante eliminado correctamente" });
-  } catch (error) {
-    res.status(500).json({ message: "Error al eliminar al estudiante" });
+  } catch (e) {
+    res.status(500).json({ error: "Error al eliminar al estudiante" });
   }
 };
 
@@ -113,15 +113,16 @@ const getStudentsGrade = async (req, res) => {
 
     if (students.length === 0) {
       return res.status(404).json({
-        message: "No hay información de estudiantes",
+        error:
+          "No hay información de estudiantes para el grado y periodo especifico",
       });
     }
 
     return res.json({ students });
-  } catch (error) {
+  } catch (e) {
     return res
       .status(500)
-      .json({ message: "Error al obtener los datos de los estudiantes" });
+      .json({ error: "Error al obtener los datos de los estudiantes" });
   }
 };
 
@@ -134,7 +135,7 @@ const updateStudent = async (req, res) => {
     });
 
     if (!student) {
-      res.status(404).json({ message: "No existe el estudiante" });
+      res.status(404).json({ error: "No existe el estudiante" });
       return;
     }
 
@@ -145,7 +146,7 @@ const updateStudent = async (req, res) => {
   } catch (e) {
     res
       .status(500)
-      .json({ message: "Error al actualizar la información del estudiante" });
+      .json({ error: "Error al actualizar la información del estudiante" });
   }
 };
 

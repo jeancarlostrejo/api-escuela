@@ -6,8 +6,8 @@ const registerUser = async (req, res) => {
     let user = await User.findOne({ email });
 
     if (user) {
-      return res.status(409).json({
-        message: "Ya se encuentra un usuario registrado con ese email",
+      return res.status(400).json({
+        error: "Ya se encuentra un usuario registrado con ese email",
       });
     }
 
@@ -17,9 +17,8 @@ const registerUser = async (req, res) => {
     return res
       .status(201)
       .json({ message: "Usuario registrado correctamente" });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "ERROR" });
+  } catch (e) {
+    return res.status(500).json({ error: "Error al registrar al usuario" });
   }
 };
 
@@ -29,13 +28,13 @@ const loginUser = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user)
-      return res.status(401).json({ message: "Email o contraseña incorrecta" });
+      return res.status(401).json({ error: "Email o contraseña incorrecta" });
 
     const hashPassword = user.password;
     const checkPassword = await user.comparePassword(password, hashPassword);
 
     if (!checkPassword) {
-      return res.status(401).json({ message: "Email o contraseña incorrecta" });
+      return res.status(401).json({ error: "Email o contraseña incorrecta" });
     }
 
     res.json({ message: "Logeado" });
