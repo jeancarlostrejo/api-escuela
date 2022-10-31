@@ -39,21 +39,28 @@ const registerStudent = async (req, res) => {
 
 //Obtener a los alumnos registrados con toda la informacion
 const getStudents = async (req, res) => {
-  try {
-    let students = await Student.find({});
+  //Opciones de la paginación, se toman los valores de la url o se setean por defecto si no se pasan
+  const options = {
+    limit: parseInt(req.query.limit, 10) || 10,
+    page: parseInt(req.query.page, 10) || 1,
+  };
 
-    if (students.length === 0) {
+  try {
+    let students = await Student.paginate({}, options);
+
+    if (students.docs.length === 0) {
       return res.status(404).json({ error: "No hay alumnos registrados" });
     }
 
     //Calculamos la edad del estudiante en base a su fecha de nacimiento a traves de una funcion del schema
-    students = students.map((v) => {
+    students.docs = students.docs.map((v) => {
       v.datosPersonales.edad = v.datosPersonales.edad;
       return v;
     });
 
     res.json(students);
   } catch (e) {
+    console.log(e);
     return res.status(500).json({ error: "Error al obtener los alumnos" });
   }
 };
@@ -101,17 +108,24 @@ const deleteStudent = async (req, res) => {
 //Aqui podremos obtener todos los alumnos de un grado en especifico (1-2-3-4-5-6)
 //En un periodo academico (Ej. los alumnos de 5 del periodo 2022-2023)
 const getStudentsGrade = async (req, res) => {
+  const options = {
+    limit: parseInt(req.query.limit, 10) || 10,
+    page: parseInt(req.query.page, 10) || 1,
+  };
   try {
     const grado = req.params.id;
     const periodo = req.params.periodo;
 
-    const students = await Student.find({
-      controlInscripcion: {
-        $elemMatch: { grado: grado, anhoEscolar: periodo },
+    const students = await Student.paginate(
+      {
+        controlInscripcion: {
+          $elemMatch: { grado: grado, anhoEscolar: periodo },
+        },
       },
-    });
+      options
+    );
 
-    if (students.length === 0) {
+    if (students.docs.length === 0) {
       return res.status(404).json({
         error:
           "No hay información de estudiantes para el grado y periodo especifico",
@@ -142,6 +156,7 @@ const updateStudent = async (req, res) => {
 
     //Obtener la edad actualizada del alumno en base a su fecha de nacimiento
     student.datosPersonales.edad = student.datosPersonales.edad;
+
     res.json({ student });
   } catch (e) {
     console.log(e);
