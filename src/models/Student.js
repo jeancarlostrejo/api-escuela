@@ -1,4 +1,5 @@
 const { mongoose } = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
 const { Schema } = mongoose;
 
 //Schema del Estudiante
@@ -510,6 +511,7 @@ studentSchema.path("datosPersonales.edad").get(function (v) {
   }
 });
 
+studentSchema.plugin(mongoosePaginate);
 const Student = mongoose.model("Student", studentSchema);
 
 module.exports = { Student };

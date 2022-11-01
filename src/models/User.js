@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
+const mongoosePaginate = require("mongoose-paginate-v2");
 const { Schema } = mongoose;
 
 const userSchema = new Schema(
@@ -19,7 +20,7 @@ const userSchema = new Schema(
 
     role: {
       type: [String],
-      enum: ["profesor", "director", "admin", "superadmin"],
+      enum: ["profesor", "director", "admin"],
       default: "profesor",
     },
   },
@@ -46,6 +47,7 @@ userSchema.methods.comparePassword = async function (passwordPlain) {
   return await bcryptjs.compare(passwordPlain, this.password);
 };
 
-const User = mongoose.model("user", userSchema);
+userSchema.plugin(mongoosePaginate);
+const User = mongoose.model("User", userSchema);
 
 module.exports = { User };
