@@ -1,5 +1,6 @@
 const { Student } = require("../models/Student");
-const { body, validationResult } = require("express-validator");
+const ObjectId = require("mongoose").Types.ObjectId;
+const { body, param, validationResult } = require("express-validator");
 
 const ValidateExpressResult = (req, res, next) => {
   const errors = validationResult(req);
@@ -50,12 +51,12 @@ const validatorAlumn = [
     .notEmpty()
     .withMessage("El número de cédula NO puede ir vacío")
     .bail()
-    .custom(async (value) => {
+    .custom(async (value, { req }) => {
       let data = await Student.findOne({
         "datosPersonales.cedula.numero": value,
       });
 
-      if (data) {
+      if (data && !(data._id.toString() === req.params.id)) {
         throw new Error(
           `Un estudiante ya se encuentra registrado con la cédula: ${value}`
         );
@@ -1309,18 +1310,16 @@ const validatorAlumn = [
 ];
 
 const validatorRegister = [
-  body("email")
+  body("username")
     .exists()
-    .withMessage("El campo del email debe existir")
+    .withMessage("El campo del nombre de usuario debe existir")
     .bail()
     .trim()
     .notEmpty()
-    .withMessage("El campo del email no debe estar vacío")
+    .withMessage("El campo del nombre de usuario no debe estar vacío")
     .bail()
-    .toLowerCase()
-    .isEmail()
-    .withMessage("El email introducido no es un formato válido")
-    .normalizeEmail(),
+    .isLength({ min: 5 })
+    .withMessage("El nombre de usuario debe tener mínimo 5 caracteres"),
   body("password")
     .exists()
     .withMessage("El campo de la contraseña debe existir")
@@ -1330,23 +1329,20 @@ const validatorRegister = [
     .withMessage("La contraseña no debe estar vacía")
     .bail()
     .isLength({ min: 6 })
-    .withMessage("La contraseña debe tener minimo 6 caracteres"),
+    .withMessage("La contraseña debe tener mínimo 6 caracteres"),
   ValidateExpressResult,
 ];
 
 const validatorLogin = [
-  body("email")
+  body("username")
     .exists()
-    .withMessage("El campo del email debe existir")
+    .withMessage("El campo del nombre de usuario debe existir")
     .bail()
     .trim()
     .notEmpty()
-    .withMessage("El campo del email no debe estar vacío")
+    .withMessage("El campo del nombre de usuario no debe estar vacío")
     .bail()
-    .toLowerCase()
-    .isEmail()
-    .withMessage("El email introducido no es un formato válido")
-    .normalizeEmail(),
+    .isLength({ min: 5 }),
   body("password")
     .exists()
     .withMessage("El campo de la contraseña debe existir")
@@ -1356,4 +1352,20 @@ const validatorLogin = [
     .withMessage("La contraseña no debe estar vacía"),
   ValidateExpressResult,
 ];
-module.exports = { validatorAlumn, validatorRegister, validatorLogin };
+
+const validatorIdParams = (req, res, next) => {
+  const { id } = req.params;
+  if (!ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ error: "No existe la información solicitada" });
+  }
+
+  next();
+};
+module.exports = {
+  validatorAlumn,
+  validatorRegister,
+  validatorLogin,
+  validatorIdParams,
+};

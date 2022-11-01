@@ -3,9 +3,11 @@ const { connectDB } = require("./src/database/config.js");
 const express = require("express");
 const cors = require("cors");
 const { router } = require("./src/routes");
+const morgan = require("morgan");
 const app = express();
 
 app.use(cors());
+app.use(morgan("dev"));
 app.use(express.json());
 
 const port = process.env.PORT || 3000;

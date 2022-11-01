@@ -6,7 +6,7 @@ const { generarData } = require("../utils/generateDataFake");
 const registerStudent = async (req, res) => {
   try {
     //Poblar la base de datos con informacion falsas
-    /*     for (let i = 0; i < 250; i++) {
+    /*     for (let i = 0; i < 176; i++) {
       let dataFake = generarData();
       let student = new Student(dataFake);
       await student.save();
@@ -39,15 +39,22 @@ const registerStudent = async (req, res) => {
 
 //Obtener a los alumnos registrados con toda la informacion
 const getStudents = async (req, res) => {
-  try {
-    let students = await Student.find({});
+  //Opciones de la paginación, se toman los valores de la url o se setean por defecto si no se pasan
+  const options = {
+    limit: parseInt(req.query.limit, 10) || 10,
+    page: parseInt(req.query.page, 10) || 1,
+  };
 
-    if (students.length === 0) {
+  try {
+    //Hacemos la consulta usando paginacion
+    let students = await Student.paginate({}, options);
+
+    if (students.docs.length === 0) {
       return res.status(404).json({ error: "No hay alumnos registrados" });
     }
 
     //Calculamos la edad del estudiante en base a su fecha de nacimiento a traves de una funcion del schema
-    students = students.map((v) => {
+    students.docs = students.docs.map((v) => {
       v.datosPersonales.edad = v.datosPersonales.edad;
       return v;
     });
@@ -62,10 +69,10 @@ const getStudents = async (req, res) => {
 const getStudent = async (req, res) => {
   try {
     const { id } = req.params;
-    const student = await Student.findById(id);
-
+    const student = await Student.findOne({ _id: id });
+    console.log(student);
     if (!student) {
-      res.status(404).json({ error: "No existe el estudiante" });
+      res.status(404).json({ error: "No existe la información solicitada" });
       return;
     }
 
@@ -86,7 +93,7 @@ const deleteStudent = async (req, res) => {
     let data = await Student.findById(id);
 
     if (!data) {
-      res.status(404).json({ error: "No existe el estudiante" });
+      res.status(404).json({ error: "No existe la información solicitada" });
       return;
     }
 
@@ -101,17 +108,26 @@ const deleteStudent = async (req, res) => {
 //Aqui podremos obtener todos los alumnos de un grado en especifico (1-2-3-4-5-6)
 //En un periodo academico (Ej. los alumnos de 5 del periodo 2022-2023)
 const getStudentsGrade = async (req, res) => {
+  //Opciones de la paginación, se toman los valores de la url o se setean por defecto si no se pasan
+  const options = {
+    limit: parseInt(req.query.limit, 10) || 10,
+    page: parseInt(req.query.page, 10) || 1,
+  };
   try {
     const grado = req.params.id;
     const periodo = req.params.periodo;
 
-    const students = await Student.find({
-      controlInscripcion: {
-        $elemMatch: { grado: grado, anhoEscolar: periodo },
+    //Hacemos la consulta usando paginacion
+    const students = await Student.paginate(
+      {
+        controlInscripcion: {
+          $elemMatch: { grado, anhoEscolar: periodo },
+        },
       },
-    });
+      options
+    );
 
-    if (students.length === 0) {
+    if (students.docs.length === 0) {
       return res.status(404).json({
         error:
           "No hay información de estudiantes para el grado y periodo especifico",
@@ -130,12 +146,13 @@ const getStudentsGrade = async (req, res) => {
 const updateStudent = async (req, res) => {
   try {
     const { id } = req.params;
+
     const student = await Student.findOneAndUpdate({ _id: id }, req.body, {
       new: true,
     });
 
     if (!student) {
-      res.status(404).json({ error: "No existe el estudiante" });
+      res.status(404).json({ error: "No existe la información solicitada" });
       return;
     }
 
@@ -144,6 +161,7 @@ const updateStudent = async (req, res) => {
 
     res.json({ student });
   } catch (e) {
+    console.log(e);
     res
       .status(500)
       .json({ error: "Error al actualizar la información del estudiante" });

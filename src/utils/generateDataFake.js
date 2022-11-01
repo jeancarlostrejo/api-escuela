@@ -221,6 +221,7 @@ const generarData = () => {
           mode: "age",
         }), // Date
         estadoCivil: faker.helpers.arrayElement(["S", "C", "D", "Otro"]), // String
+        edad: faker.datatype.number({ min: 20, max: 50 }),
         lugarNacimiento: faker.address.city(), // String
         profesion: faker.name.jobTitle(), // String
         ingresoEconomico: faker.datatype.number({ min: 0, max: 20000000 }), //Number
@@ -324,6 +325,7 @@ const generarData = () => {
         estadoCivil: faker.helpers.arrayElement(["S", "C", "D", "Otro"]), // String
         lugarNacimiento: faker.address.city(), // String
         profesion: faker.name.jobTitle(), // String
+        edad: faker.datatype.number({ min: 20, max: 50 }), //Number
         ingresoEconomico: faker.datatype.number({ min: 0, max: 20000000 }), // Number
         telefonoResidencial: `${faker.helpers.arrayElement([
           "0424",
@@ -683,11 +685,11 @@ const generarData = () => {
 };
 
 //Genera un archivo .txt con un objeto JSON de los datos de un estudiante
-fs.writeFile("fakeData.txt", JSON.stringify(generarData()), (err) => {
+/* fs.writeFile("fakeData.txt", JSON.stringify(generarData()), (err) => {
   if (err) {
     console.error(err);
     return;
   }
-});
+}); */
 
 module.exports = { generarData };

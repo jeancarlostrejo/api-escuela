@@ -1,43 +1,52 @@
 const { User } = require("../models/User");
+const { tokenSign } = require("../utils/tokenManager");
 
 const registerUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    let user = await User.findOne({ email });
+    const { username, password, role } = req.body;
+    let user = await User.findOne({ username });
 
     if (user) {
       return res.status(400).json({
-        error: "Ya se encuentra un usuario registrado con ese email",
+        error:
+          "Ya se encuentra un usuario registrado con ese nombre de usuario",
       });
     }
 
-    user = new User({ email, password });
+    user = new User({ username, password, role });
     user = await user.save();
 
     return res
       .status(201)
       .json({ message: "Usuario registrado correctamente" });
   } catch (e) {
+    console.log(e);
     return res.status(500).json({ error: "Error al registrar al usuario" });
   }
 };
 
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username });
     if (!user)
-      return res.status(401).json({ error: "Email o contraseña incorrecta" });
+      return res
+        .status(401)
+        .json({ error: "Nombre de usuario o contraseña incorrecta" });
 
     const hashPassword = user.password;
     const checkPassword = await user.comparePassword(password, hashPassword);
 
     if (!checkPassword) {
-      return res.status(401).json({ error: "Email o contraseña incorrecta" });
+      return res
+        .status(401)
+        .json({ error: "Nombre de usuario o contraseña incorrecta" });
     }
 
-    res.json({ message: "Logeado" });
+    const token = tokenSign(user);
+
+    res.json({ message: "Logeado", token });
   } catch (error) {
     return res.status(500).json("Error al iniciar sesión");
   }
