@@ -3,16 +3,17 @@ const { tokenSign } = require("../utils/tokenManager");
 
 const registerUser = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
     let user = await User.findOne({ username });
 
     if (user) {
       return res.status(400).json({
-        error: "Ya se encuentra un usuario registrado con ese email",
+        error:
+          "Ya se encuentra un usuario registrado con ese nombre de usuario",
       });
     }
 
-    user = new User({ username, password });
+    user = new User({ username, password, role });
     user = await user.save();
 
     return res

@@ -46,6 +46,7 @@ const getStudents = async (req, res) => {
   };
 
   try {
+    //Hacemos la consulta usando paginacion
     let students = await Student.paginate({}, options);
 
     if (students.docs.length === 0) {
@@ -60,7 +61,6 @@ const getStudents = async (req, res) => {
 
     res.json(students);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({ error: "Error al obtener los alumnos" });
   }
 };
@@ -69,10 +69,10 @@ const getStudents = async (req, res) => {
 const getStudent = async (req, res) => {
   try {
     const { id } = req.params;
-    const student = await Student.findById(id);
-
+    const student = await Student.findOne({ _id: id });
+    console.log(student);
     if (!student) {
-      res.status(404).json({ error: "No existe el estudiante" });
+      res.status(404).json({ error: "No existe la información solicitada" });
       return;
     }
 
@@ -93,7 +93,7 @@ const deleteStudent = async (req, res) => {
     let data = await Student.findById(id);
 
     if (!data) {
-      res.status(404).json({ error: "No existe el estudiante" });
+      res.status(404).json({ error: "No existe la información solicitada" });
       return;
     }
 
@@ -108,6 +108,7 @@ const deleteStudent = async (req, res) => {
 //Aqui podremos obtener todos los alumnos de un grado en especifico (1-2-3-4-5-6)
 //En un periodo academico (Ej. los alumnos de 5 del periodo 2022-2023)
 const getStudentsGrade = async (req, res) => {
+  //Opciones de la paginación, se toman los valores de la url o se setean por defecto si no se pasan
   const options = {
     limit: parseInt(req.query.limit, 10) || 10,
     page: parseInt(req.query.page, 10) || 1,
@@ -116,10 +117,11 @@ const getStudentsGrade = async (req, res) => {
     const grado = req.params.id;
     const periodo = req.params.periodo;
 
+    //Hacemos la consulta usando paginacion
     const students = await Student.paginate(
       {
         controlInscripcion: {
-          $elemMatch: { grado: grado, anhoEscolar: periodo },
+          $elemMatch: { grado, anhoEscolar: periodo },
         },
       },
       options
@@ -150,7 +152,7 @@ const updateStudent = async (req, res) => {
     });
 
     if (!student) {
-      res.status(404).json({ error: "No existe el estudiante" });
+      res.status(404).json({ error: "No existe la información solicitada" });
       return;
     }
 

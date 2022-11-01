@@ -1,5 +1,6 @@
 const { Student } = require("../models/Student");
-const { body, validationResult } = require("express-validator");
+const ObjectId = require("mongoose").Types.ObjectId;
+const { body, param, validationResult } = require("express-validator");
 
 const ValidateExpressResult = (req, res, next) => {
   const errors = validationResult(req);
@@ -1351,4 +1352,20 @@ const validatorLogin = [
     .withMessage("La contraseña no debe estar vacía"),
   ValidateExpressResult,
 ];
-module.exports = { validatorAlumn, validatorRegister, validatorLogin };
+
+const validatorIdParams = (req, res, next) => {
+  const { id } = req.params;
+  if (!ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ error: "No existe la información solicitada" });
+  }
+
+  next();
+};
+module.exports = {
+  validatorAlumn,
+  validatorRegister,
+  validatorLogin,
+  validatorIdParams,
+};
