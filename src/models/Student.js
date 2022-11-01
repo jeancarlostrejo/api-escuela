@@ -264,19 +264,14 @@ const studentSchema = new Schema(
         alergia: {
           posee: Boolean,
           descripcion: String,
-          alimentos: [String],
+          alimentos: String,
         },
-        condicionEspecial: {
-          posee: Boolean,
-          descripcion: String,
-        },
+        condicionEspecial: String,
 
         objetosRecetados: {
           zapatosOrtopedicos: Boolean,
           lentesRecetados: Boolean,
-          otros: {
-            type: [String],
-          },
+          otros: String,
         },
         tratamiento: {
           recibe: Boolean,

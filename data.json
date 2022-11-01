@@ -164,16 +164,13 @@
       "alergia": {
         "posee": true,
         "descripcion": "Alergia al polvo y la humedad",
-        "alimentos": ["Mani", "Soya", "Leche"]
+        "alimentos": "Mani, leche y soja"
       },
-      "condicionEspecial": {
-        "posee": true,
-        "descripcion": "TDA"
-      },
+      "condicionEspecial": "Posee TDA",
       "objetosRecetados": {
         "zapatosOrtopedicos": false,
         "lentesRecetados": true,
-        "otros": ["Pastillas", "Jarabes"]
+        "otros": "Silla de ruedas y pastillas"
       },
       "tratamiento": {
         "recibe": true,

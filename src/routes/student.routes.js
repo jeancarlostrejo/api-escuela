@@ -21,7 +21,7 @@ const { checkRol } = require("../middlewares/rol");
 router.get("/", authMiddleware, /*checkRol(["profesor"])*/ getStudents);
 
 //Registrar-Inscribir a un alumno por primera vez
-router.post("/", validatorAlumn, registerStudent);
+router.post("/", registerStudent);
 
 //Dado un id, obtener la informacion de un alumno en especifico
 router.get("/:id", validatorIdParams, getStudent);

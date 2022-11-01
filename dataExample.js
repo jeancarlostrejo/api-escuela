@@ -189,18 +189,15 @@ const dataTest = {
       alergia: {
         posee: true, // Boolean
         descripcion: "Alergia al polvo y la humedad", // String
-        alimentos: ["Babo", "Soya"], // Array de String
+        alimentos: "Babo y la soya", // String
       },
-      //Objeto
-      condicionEspecial: {
-        posee: true, // Boolean
-        descripcion: "TDA", // String
-      },
+
+      condicionEspecial: "Posee TDA", //String
       //Objeto
       objetosRecetados: {
         zapatosOrtopedicos: false, // Boolean
         lentesRecetados: true, // Boolean
-        otros: ["Pastillas", "Jarabes"], // Array de String
+        otros: "Silla de ruedas y pastillas", // String
       },
       //Objeto
       tratamiento: {

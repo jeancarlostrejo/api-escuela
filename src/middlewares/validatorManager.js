@@ -821,18 +821,6 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSalud.habitosAlimenticios.condicionEspecial.posee")
-    .trim()
-    .optional({
-      checkFalsy: true,
-      nullable: true,
-    }),
-  body(
-    "aspectosSalud.habitosAlimenticios.condicionEspecial.descripcion"
-  ).optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
   body("aspectosSalud.habitosAlimenticios.objetosRecetados").optional({
     checkFalsy: true,
     nullable: true,

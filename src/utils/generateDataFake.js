@@ -433,30 +433,19 @@ const generarData = () => {
         alergia: {
           posee: faker.datatype.boolean(), // Boolean
           descripcion: faker.lorem.sentence(5), // String
-          alimentos: faker.helpers.arrayElement([
-            faker.helpers.arrayElements(
-              ["Maní", "Leche", "Pescado", "Soja", "Mariscos", "Otros"],
-              faker.datatype.number({ min: 1, max: 6 })
-            ),
-            [],
-          ]), // Array de String
+          alimentos: faker.helpers.arrayElement([faker.lorem.words(3), ""]), // String
         },
-        //Objeto
-        condicionEspecial: {
-          posee: faker.datatype.boolean(), // Boolean
-          descripcion: faker.lorem.sentence(5), // String
-        },
+
+        condicionEspecial: faker.helpers.arrayElement([
+          faker.lorem.words(3),
+          "",
+        ]), //String
+
         //Objeto
         objetosRecetados: {
           zapatosOrtopedicos: faker.datatype.boolean(), // Boolean
           lentesRecetados: faker.datatype.boolean(), // Boolean
-          otros: faker.helpers.arrayElement([
-            faker.helpers.arrayElements(
-              ["Muletas", "Silla de ruedas", "Otros"],
-              faker.datatype.number({ min: 1, max: 4 })
-            ),
-            [],
-          ]), // Array de String
+          otros: faker.helpers.arrayElement([faker.lorem.words(3), ""]), // Array de String
         },
         //Objeto
         tratamiento: {

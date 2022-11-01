@@ -6,7 +6,7 @@ const { generarData } = require("../utils/generateDataFake");
 const registerStudent = async (req, res) => {
   try {
     //Poblar la base de datos con informacion falsas
-    /*     for (let i = 0; i < 176; i++) {
+    /*     for (let i = 0; i < 250; i++) {
       let dataFake = generarData();
       let student = new Student(dataFake);
       await student.save();
