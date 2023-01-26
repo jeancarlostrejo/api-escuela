@@ -12,7 +12,6 @@ const registerUser = async (req, res) => {
           "Ya se encuentra un usuario registrado con ese nombre de usuario",
       });
     }
-
     user = new User({ username, password, role });
     user = await user.save();
 
@@ -20,7 +19,6 @@ const registerUser = async (req, res) => {
       .status(201)
       .json({ message: "Usuario registrado correctamente" });
   } catch (e) {
-    console.log(e);
     return res.status(500).json({ error: "Error al registrar al usuario" });
   }
 };
@@ -46,7 +44,7 @@ const loginUser = async (req, res) => {
 
     const token = tokenSign(user);
 
-    res.json({ message: "Logeado", token });
+    res.json({ message: "Logueado", token });
   } catch (error) {
     return res.status(500).json("Error al iniciar sesión");
   }

@@ -4,7 +4,7 @@ const { mongoose } = require("mongoose");
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      process.env.DB_URI || "mongodb://localhost:27017/testDB"
+      process.env.DB_URI || "mongodb://127.0.0.1:27017/testDB"
     );
     console.log("*****CONECTADO CORRECTAMENTE A LA BASE DE DATOS*****");
   } catch (error) {
