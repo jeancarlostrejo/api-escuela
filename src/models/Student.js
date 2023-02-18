@@ -17,7 +17,7 @@ const studentSchema = new Schema(
       cedula: {
         tipo: {
           type: String,
-          enum: ["V", "E"],
+          enum: ["V", "E", ""],
         },
         numero: {
           type: String,
@@ -94,7 +94,7 @@ const studentSchema = new Schema(
         },
         gradoCursan: {
           type: [String],
-          enum: ["1", "2", "3", "4", "5", "6"],
+          enum: ["1", "2", "3", "4", "5", "6", ""],
         },
       },
       personaEmergencia: {
@@ -149,7 +149,7 @@ const studentSchema = new Schema(
         cedula: {
           tipo: {
             type: String,
-            enum: ["V", "E"],
+            enum: ["V", "E", ""],
           },
           numero: String,
         },
@@ -178,11 +178,12 @@ const studentSchema = new Schema(
               "Opcion a Compra",
               "Compartida",
               "Invadida",
+              "",
             ],
           },
           tipo: {
             type: String,
-            enum: ["Rancho", "Casa", "Quinta", "Apartamento"],
+            enum: ["Rancho", "Casa", "Quinta", "Apartamento", ""],
           },
         },
         religion: String,
@@ -203,7 +204,7 @@ const studentSchema = new Schema(
         cedula: {
           tipo: {
             type: String,
-            enum: ["V", "E"],
+            enum: ["V", "E", ""],
           },
           numero: String,
         },
@@ -302,7 +303,7 @@ const studentSchema = new Schema(
       cedula: {
         tipo: {
           type: String,
-          enum: ["V", "E"],
+          enum: ["V", "E", ""],
         },
         numero: String,
       },
@@ -348,7 +349,7 @@ const studentSchema = new Schema(
       transporteEscuela: {
         medio: {
           type: String,
-          enum: ["Privado", "Publico", "Transporte Escolar", "Caminando"],
+          enum: ["Privado", "Publico", "Transporte Escolar", "Caminando", ""],
         },
 
         via: String,
@@ -385,7 +386,7 @@ const studentSchema = new Schema(
         _id: false,
         grado: {
           type: String,
-          enum: ["1", "2", "3", "4", "5", "6"],
+          enum: ["1", "2", "3", "4", "5", "6", ""],
         },
 
         estatura: {
