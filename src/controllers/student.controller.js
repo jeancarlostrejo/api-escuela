@@ -6,13 +6,13 @@ const { generarData } = require("../utils/generateDataFake");
 const registerStudent = async (req, res) => {
   try {
     //Poblar la base de datos con informacion falsas
-    for (let i = 0; i < 250; i++) {
+    /*for (let i = 0; i < 250; i++) {
       let dataFake = generarData();
       let student = new Student(dataFake);
       await student.save();
-    }
+    }*/
 
-    /*    const cedula = req.body.datosPersonales.cedula.numero;
+    const cedula = req.body.datosPersonales.cedula.numero;
 
     //Buscamos si ya hay un estudiante registrado con la misma cedula
     let data = await Student.findOne({
@@ -27,13 +27,13 @@ const registerStudent = async (req, res) => {
     }
 
     const student = new Student(req.body);
-    data = await student.save(); */
+    data = await student.save();
 
     return res
       .status(201)
       .json({ message: "Estudiante registrado correctamente" });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     return res.status(500).json({ error: "Error al registrar un estudiante" });
   }
 };
