@@ -174,7 +174,8 @@ const validatorAlumn = [
     .optional({ checkFalsy: true, nullable: true }),
   body("datosPersonales.nuevoIngreso")
     .isBoolean()
-    .withMessage("Ingrese un valor Booleano"),
+    .withMessage("Ingrese un valor Booleano")
+    .default(false),
   body("datosPersonales.institucionProcedencia").trim().default("N/P"),
   body("datosPersonales.razonInscripcion").trim().default("N/P"),
   body("datosPersonales.gradoCursar")
@@ -196,7 +197,8 @@ const validatorAlumn = [
     .withMessage("Indique si el alumno es repitiente")
     .bail()
     .isBoolean()
-    .withMessage("El campo Repitiente debe ser un valor boolean"),
+    .withMessage("El campo Repitiente debe ser un valor boolean")
+    .default(false),
   body("datosPersonales.regular")
     .exists()
     .withMessage("El campo de Regular debe existir")
@@ -206,7 +208,8 @@ const validatorAlumn = [
     .withMessage("Indique si el alumno es regular")
     .bail()
     .isBoolean()
-    .withMessage("El campo Regular debe ser un valor boolean"),
+    .withMessage("El campo Regular debe ser un valor boolean")
+    .default(false),
   body("datosPersonales.tallaCamisa")
     .exists()
     .withMessage("El campo de Talla Camisa debe existir")
@@ -278,7 +281,8 @@ const validatorAlumn = [
     .isBoolean()
     .withMessage(
       "El campo que indica si tiene hermanos en la Institución debe ser un boolean"
-    ),
+    )
+    .default(false),
   body("datosPersonales.hermanosInstitucion.cantidad")
     .exists()
     .withMessage(
@@ -366,7 +370,7 @@ const validatorAlumn = [
     .withMessage(
       "El campo que indica si el niño vive con la madre debe ser un boolean"
     )
-    .optional({ checkFalsy: true, nullable: true }),
+    .default(false),
   body("aspectosSociales.viveNinho.padre")
     .exists()
     .withMessage("indique si el niño vive con el padre")
@@ -374,7 +378,7 @@ const validatorAlumn = [
     .withMessage(
       "El campo que indica si el niño vive con el padre debe ser un boolean"
     )
-    .optional({ checkFalsy: true, nullable: true }),
+    .default(false),
   body("aspectosSociales.viveNinho.otros")
     .exists()
     .withMessage("Debe existir el campo")
@@ -438,7 +442,7 @@ const validatorAlumn = [
     .withMessage(
       "El campo que indica si viven otros familiares en el hogar debe ser un boolean"
     )
-    .optional({ checkFalsy: true, nullable: true }),
+    .default(false),
   body("aspectosSociales.otrosFamiliaresHogar.parentesco").optional({
     checkFalsy: true,
     nullable: true,
@@ -470,26 +474,17 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSociales.beca").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSociales.beca").default(false),
   body("aspectosSociales.lecturaHogar").optional({
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSociales.lecturaHogar.practica").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSociales.lecturaHogar.practica").default(false),
   body("aspectosSociales.lecturaHogar.tipo").trim().optional({
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSociales.trabajo").optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSociales.trabajo").default(false),
   body("aspectosSociales.trabajo.ejerce").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -579,10 +574,7 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("identificacionPadres.madre.viveConNinho").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("identificacionPadres.madre.viveConNinho").default(false),
   body("identificacionPadres.madre.gradoInstruccion").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -611,10 +603,7 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("identificacionPadres.madre.misionSocial.posee").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("identificacionPadres.madre.misionSocial.posee").default(false),
   body("identificacionPadres.madre.misionSocial.descripcion").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -703,10 +692,7 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("identificacionPadres.padre.viveConNinho").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("identificacionPadres.padre.viveConNinho").default(false),
   body("identificacionPadres.padre.gradoInstruccion").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -743,18 +729,12 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSalud.lloroNacer").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSalud.lloroNacer").default(false),
   body("aspectosSalud.gatear").optional({
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSalud.gatear.gateo").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSalud.gatear.gateo").default(false),
   body("aspectosSalud.gatear.edad").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -767,10 +747,7 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSalud.familiarDiscapacidad.posee").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSalud.familiarDiscapacidad.posee").default(false),
   body("aspectosSalud.familiarDiscapacidad.descripcion").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -791,10 +768,7 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSalud.habitosAlimenticios.alimentos.comeTodo").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSalud.habitosAlimenticios.alimentos.comeTodo").default(false),
   body("aspectosSalud.habitosAlimenticios.alimentos.tipo").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -803,10 +777,7 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSalud.habitosAlimenticios.alergia.posee").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSalud.habitosAlimenticios.alergia.posee").default(false),
   body("aspectosSalud.habitosAlimenticios.alergia.descripcion")
     .trim()
     .optional({
@@ -827,16 +798,10 @@ const validatorAlumn = [
   }),
   body(
     "aspectosSalud.habitosAlimenticios.objetosRecetados.zapatosOrtopedicos"
-  ).optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  ).default(false),
   body(
     "aspectosSalud.habitosAlimenticios.objetosRecetados.lentesRecetados"
-  ).optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  ).default(false),
   body("aspectosSalud.habitosAlimenticios.objetosRecetados.otros").optional({
     checkFalsy: true,
     nullable: true,
@@ -845,10 +810,7 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("aspectosSalud.habitosAlimenticios.tratamiento.recibe").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSalud.habitosAlimenticios.tratamiento.recibe").default(false),
   body("aspectosSalud.habitosAlimenticios.tratamiento.nombre").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -878,10 +840,7 @@ const validatorAlumn = [
     nullable: true,
   }),
 
-  body("aspectosSalud.habitosAlimenticios.asegurado.seguro").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("aspectosSalud.habitosAlimenticios.asegurado.seguro").default(false),
 
   body("aspectosSalud.habitosAlimenticios.asegurado.tipo").optional({
     checkFalsy: true,
@@ -904,12 +863,9 @@ const validatorAlumn = [
       checkFalsy: true,
       nullable: true,
     }),
-  body("aspectosSalud.habitosAlimenticios.desarrolloLenguajeMotor.alteraFacil")
-    .trim()
-    .optional({
-      checkFalsy: true,
-      nullable: true,
-    }),
+  body(
+    "aspectosSalud.habitosAlimenticios.desarrolloLenguajeMotor.alteraFacil"
+  ).default(false),
   body("aspectosSalud.habitosAlimenticios.desarrolloLenguajeMotormanoTrabajar")
     .trim()
     .optional({
@@ -980,10 +936,7 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("representanteLegal.viveConNinho").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("representanteLegal.viveConNinho").default(false),
   body("representanteLegal.telefonoResidencial").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -1036,10 +989,7 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("otrosDatos.retiraSoloInstitucion.retira").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("otrosDatos.retiraSoloInstitucion.retira").default(false),
   body("otrosDatos.retiraSoloInstitucion.razon").trim().optional({
     checkFalsy: true,
     nullable: true,
@@ -1072,22 +1022,13 @@ const validatorAlumn = [
     checkFalsy: true,
     nullable: true,
   }),
-  body("otrosDatos.gradoReprobado.reprobado").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("otrosDatos.gradoReprobado.reprobado").default(false),
   body("otrosDatos.gradoReprobado.grado").trim().optional({
     checkFalsy: true,
     nullable: true,
   }),
-  body("otrosDatos.cumpleNormasHogar").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
-  body("otrosDatos.firmaActaCompromiso").trim().optional({
-    checkFalsy: true,
-    nullable: true,
-  }),
+  body("otrosDatos.cumpleNormasHogar").default(false),
+  body("otrosDatos.firmaActaCompromiso").default(false),
   body("controlInscripcion")
     .isArray({ min: 1 })
     .withMessage("Debe indicar los datos del control de la inscripcion"),
@@ -1254,10 +1195,7 @@ const validatorAlumn = [
     .toBoolean()
     .isBoolean()
     .withMessage("El campo del control del retiro debe ser un boolean")
-    .optional({
-      checkFalsy: true,
-      nullable: true,
-    }),
+    .default(false),
   body("controlRetiro.fecha")
     .notEmpty()
     .trim()
