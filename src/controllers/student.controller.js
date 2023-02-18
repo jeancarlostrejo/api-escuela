@@ -33,7 +33,7 @@ const registerStudent = async (req, res) => {
       .status(201)
       .json({ message: "Estudiante registrado correctamente" });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     return res.status(500).json({ error: "Error al registrar un estudiante" });
   }
 };
