@@ -33,7 +33,6 @@ const registerStudent = async (req, res) => {
       .status(201)
       .json({ message: "Estudiante registrado correctamente" });
   } catch (e) {
-    //console.log(e);
     return res.status(500).json({ error: "Error al registrar un estudiante" });
   }
 };
@@ -46,10 +45,22 @@ const getStudents = async (req, res) => {
     page: parseInt(req.query.page, 10) || 1,
   };
 
+  let students;
+  const { name } = req.query;
+
   try {
     //Hacemos la consulta usando paginacion
-    let students = await Student.paginate({}, options);
 
+    if (name) {
+      students = await Student.paginate(
+        {
+          "datosPersonales.nombre": { $regex: name, $options: "i" },
+        },
+        options
+      );
+    } else {
+      students = await Student.paginate({}, options);
+    }
     if (students.docs.length === 0) {
       return res.status(404).json({ error: "No hay alumnos registrados" });
     }
@@ -71,7 +82,6 @@ const getStudent = async (req, res) => {
   try {
     const { id } = req.params;
     const student = await Student.findOne({ _id: id });
-    console.log(student);
     if (!student) {
       res.status(404).json({ error: "No existe la información solicitada" });
       return;
@@ -114,19 +124,40 @@ const getStudentsGrade = async (req, res) => {
     limit: parseInt(req.query.limit, 10) || 10,
     page: parseInt(req.query.page, 10) || 1,
   };
+
   try {
     const grado = req.params.id;
     const periodo = req.params.periodo;
+    const name = req.query.name;
+
+    let students;
+
+    //Hacemos la consulta
+    //Se hace una busqueda por nombre si se pasa como una query por la url,
+    //de lo controrario solo se hace una busqueda por el grado y periodo
+    if (name) {
+      students = await Student.paginate(
+        {
+          controlInscripcion: {
+            $elemMatch: { grado, anhoEscolar: periodo },
+          },
+          "datosPersonales.nombre": { $regex: name, $options: "i" },
+        },
+
+        options
+      );
+    } else {
+      students = await Student.paginate(
+        {
+          controlInscripcion: {
+            $elemMatch: { grado, anhoEscolar: periodo },
+          },
+        },
+        options
+      );
+    }
 
     //Hacemos la consulta usando paginacion
-    const students = await Student.paginate(
-      {
-        controlInscripcion: {
-          $elemMatch: { grado, anhoEscolar: periodo },
-        },
-      },
-      options
-    );
 
     if (students.docs.length === 0) {
       return res.status(404).json({
@@ -163,7 +194,6 @@ const updateStudent = async (req, res) => {
 
     res.json({ student });
   } catch (e) {
-    console.log(e);
     return res
       .status(500)
       .json({ error: "Error al actualizar la información del estudiante" });
