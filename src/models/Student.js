@@ -465,6 +465,16 @@ studentSchema.statics.filterGradePeriod = async function (grado, periodo) {
 studentSchema.pre(["save"], function (next) {
   const fechaActual = new Date();
 
+  let sinDiacriticos = (() => {
+    let de = "ÁÃÀÄÂÉËÈÊÍÏÌÎÓÖÒÔÚÜÙÛÑÇáãàäâéëèêíïìîóöòôúüùûnç",
+      a = "AAAAAEEEEIIIIOOOOUUUUNCaaaaaeeeeiiiioooouuuunc",
+      re = new RegExp("[" + de + "]", "ug");
+
+    return (texto) => texto.replace(re, (match) => a.charAt(de.indexOf(match)));
+  })();
+
+  this.datosPersonales.nombre = sinDiacriticos(this.datosPersonales.nombre);
+
   if (
     fechaActual.getMonth() > this.datosPersonales.fechaNacimiento.getMonth() ||
     (fechaActual.getMonth() ===

@@ -1056,7 +1056,7 @@ const validatorAlumn = [
       let fecha = new Date(value);
 
       if (!(fecha !== "Invalid Date" && !isNaN(fecha))) {
-        throw new Error("La fecha de nacimiento NO es una fecha válida");
+        throw new Error("La fecha de Inscripcion NO es una fecha válida");
       }
       return value;
     }),
