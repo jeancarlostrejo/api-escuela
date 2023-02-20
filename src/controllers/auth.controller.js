@@ -43,8 +43,12 @@ const loginUser = async (req, res) => {
     }
 
     const token = tokenSign(user);
+    const userLogged = {
+      username: user.username,
+      role: user.role,
+    };
 
-    res.json({ message: "Logueado", token });
+    res.json({ message: "Logueado", token, user: userLogged });
   } catch (error) {
     return res.status(500).json("Error al iniciar sesión");
   }
