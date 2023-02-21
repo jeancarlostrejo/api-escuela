@@ -1159,8 +1159,8 @@ const validatorAlumn = [
       "El campo Talla Pantalón en la actualizacion de los datos NO debe estar vacío "
     )
     .bail()
-    .isFloat({ gt: 5, lt: 31 })
-    .withMessage("Talla de Pantalón inválida (min: 6 y max: 30)")
+    .isFloat({ gt: 3.9, lt: 31 })
+    .withMessage("Talla de Pantalón inválida (min: 4 y max: 30)")
     .optional({
       checkFalsy: true,
       nullable: true,
